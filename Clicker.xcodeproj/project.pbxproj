@@ -11,7 +11,34 @@
 		450ADEC821F5F13C00611150 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450ADEC721F5F13C00611150 /* ViewController.swift */; };
 		450ADECA21F5F13C00611150 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 450ADEC921F5F13C00611150 /* Assets.xcassets */; };
 		450ADECD21F5F13C00611150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450ADECB21F5F13C00611150 /* Main.storyboard */; };
+		450ADED821F5F3F200611150 /* HotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 450ADED721F5F3F200611150 /* HotKey.framework */; };
+		450ADED921F5F3F200611150 /* HotKey.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 450ADED721F5F3F200611150 /* HotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		450ADEDD21F5F45300611150 /* HotKey.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 450ADEDC21F5F45300611150 /* HotKey.framework.dSYM */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		450ADEDA21F5F3F200611150 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				450ADED921F5F3F200611150 /* HotKey.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		450ADEDB21F5F44200611150 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				450ADEDD21F5F45300611150 /* HotKey.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		450ADEC221F5F13C00611150 /* Clicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -21,6 +48,8 @@
 		450ADECC21F5F13C00611150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		450ADECE21F5F13C00611150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		450ADECF21F5F13C00611150 /* Clicker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clicker.entitlements; sourceTree = "<group>"; };
+		450ADED721F5F3F200611150 /* HotKey.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HotKey.framework; path = Carthage/Build/Mac/HotKey.framework; sourceTree = "<group>"; };
+		450ADEDC21F5F45300611150 /* HotKey.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = HotKey.framework.dSYM; path = Carthage/Build/Mac/HotKey.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				450ADED821F5F3F200611150 /* HotKey.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +67,8 @@
 		450ADEB921F5F13C00611150 = {
 			isa = PBXGroup;
 			children = (
+				450ADEDC21F5F45300611150 /* HotKey.framework.dSYM */,
+				450ADED721F5F3F200611150 /* HotKey.framework */,
 				450ADEC421F5F13C00611150 /* Clicker */,
 				450ADEC321F5F13C00611150 /* Products */,
 			);
@@ -73,6 +105,8 @@
 				450ADEBE21F5F13C00611150 /* Sources */,
 				450ADEBF21F5F13C00611150 /* Frameworks */,
 				450ADEC021F5F13C00611150 /* Resources */,
+				450ADEDA21F5F3F200611150 /* Embed Frameworks */,
+				450ADEDB21F5F44200611150 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -95,6 +129,11 @@
 				TargetAttributes = {
 					450ADEC121F5F13C00611150 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -271,9 +310,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Clicker/Clicker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Clicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -289,9 +332,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Clicker/Clicker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = Clicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
